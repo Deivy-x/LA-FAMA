@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits, AttachmentBuilder } = require("discord.js");
 const { createCanvas, loadImage } = require("@napi-rs/canvas");
 require("dotenv").config();
+
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -41,7 +42,6 @@ client.on("guildMemberAdd", async (member) => {
             avatar = await loadImage("https://cdn.discordapp.com/embed/avatars/0.png");
         }
 
-        // Coordenadas exactas del círculo morado
         const cx = 770;
         const cy = 345;
         const radio = 255;
@@ -54,7 +54,6 @@ client.on("guildMemberAdd", async (member) => {
         ctx.drawImage(avatar, cx - radio, cy - radio, radio * 2, radio * 2);
         ctx.restore();
 
-        // Texto BIENVENID@
         ctx.font = "bold 90px Impact";
         ctx.textAlign = "center";
         ctx.strokeStyle = "#9B59B6";
@@ -63,7 +62,6 @@ client.on("guildMemberAdd", async (member) => {
         ctx.fillStyle = "#ffffff";
         ctx.fillText("BIENVENID@", cx, cy + radio + 90);
 
-        // Nombre usuario
         ctx.font = "bold 50px Impact";
         ctx.textAlign = "center";
         ctx.strokeStyle = "#000000";
@@ -86,17 +84,4 @@ client.on("guildMemberAdd", async (member) => {
     }
 });
 
-client.login(process.env.TOKEN);
-```
-
-**Paso 2** — Crea un archivo nuevo llamado `.env` en tu carpeta y pon:
-```
-TOKEN = MTQ4ODQxMjA5NzMzNDQ3NjkwMg.Gl2lOY.dCC9NAvNrxr5l39KZpOglv_CHcIy9ythkn6YE4
-    ```
-
-**Paso 3** — Agrega `.env` al `.gitignore` para que nunca se suba:
-
-Abre `.gitignore` y agrégale esta línea:
-```
-    .env
-node_modules/
+client.login(process.env.TOKE);
